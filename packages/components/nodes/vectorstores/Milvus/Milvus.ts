@@ -6,7 +6,7 @@ import { Embeddings } from '@langchain/core/embeddings'
 import { ICommonObject, INode, INodeData, INodeOutputsValue, INodeParams, IndexingResult } from '../../../src/Interface'
 import { FLOWISE_CHATID, getBaseClasses, getCredentialData, getCredentialParam } from '../../../src/utils'
 import { howToUseFileUpload } from '../VectorStoreUtils'
-import logger, { expressRequestLogger } from './utils/logger'
+import logger, { expressRequestLogger } from '../../../src/utils/logger'
 
 interface InsertRow {
     [x: string]: string | number[]
