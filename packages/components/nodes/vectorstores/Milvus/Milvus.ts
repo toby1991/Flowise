@@ -6,7 +6,6 @@ import { Embeddings } from '@langchain/core/embeddings'
 import { ICommonObject, INode, INodeData, INodeOutputsValue, INodeParams, IndexingResult } from '../../../src/Interface'
 import { FLOWISE_CHATID, getBaseClasses, getCredentialData, getCredentialParam } from '../../../src/utils'
 import { howToUseFileUpload } from '../VectorStoreUtils'
-import logger, { expressRequestLogger } from '../../../src/utils/logger'
 
 interface InsertRow {
     [x: string]: string | number[]
@@ -361,17 +360,12 @@ const similaritySearchVectorWithScore = async (query: number[], k: number, vecto
 
     const outputFields = vectorStore.fields.filter((field) => field !== vectorStore.vectorField)
 
-    logger.info('vectorStore.indexSearchParams');
-    logger.info(vectorStore.indexSearchParams);
-    logger.info(JSON.stringify(vectorStore.indexSearchParams));
     const search_params: any = {
         anns_field: vectorStore.vectorField,
         topk: k.toString(),
         metric_type: vectorStore.indexCreateParams.metric_type,
-        params: ''
+        params: JSON.stringify(vectorStore.indexSearchParams)
     }
-    logger.info("search_params");
-    logger.info(search_params);
     const searchResp = await vectorStore.client.search({
         collection_name: vectorStore.collectionName,
         search_params,
