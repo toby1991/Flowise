@@ -37,7 +37,7 @@ ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 # Copy Flowise from the build stage
 #COPY --from=build /usr/local/lib/node_modules /usr/local/lib/node_modules
 #COPY --from=build /usr/local/bin /usr/local/bin
-COPY --from=build /usr/src/node_modules /usr/local/lib/node_modules 
+COPY --from=build /usr/src/ /usr/local/lib/ 
 #COPY --from=build /usr/src/node_modules/flowise/bin /usr/local/bin/flowise-server
 
 ENTRYPOINT ["/usr/local/lib/node_modules/flowise/bin/run", "start"]
